@@ -4,7 +4,11 @@
   "description": "",
   "scripts": {
     "dev": "nodemon src/index.js --exec babel-node",
+    "dev:parse-server": "nodemon --exec babel-node src/modules/server/createParseServer.js",
+    "dev:live-query-server": "nodemon --exec babel-node src/modules/server/createLiveQueryServer.js",
     "start": "node lib/index.js",
+    "start:parse-server": "node lib/modules/server/createParseServer.js",
+    "start:live-query-server": "node lib/modules/server/createLiveQueryServer.js",
     "build": "babel src --out-dir lib --copy-files",
     "test": "jest --onlyChanged --watch",
     "test:all": "jest",
@@ -41,7 +45,15 @@
     "rimraf": "^2.6.1"
   },
   "dependencies": {
-    "dotenv": "^5.0.1"
+    "compression": "^1.7.2",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "on-finished": "^2.3.0",
+    "parse": "^1.11.1",
+    "parse-dashboard": "^1.2.0",
+    "parse-server": "^2.8.1",
+    "ramda": "^0.25.0"
   },
   "jest": {
     "verbose": true,

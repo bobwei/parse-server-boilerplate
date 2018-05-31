@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+  parse-server:
+    image: parse-server-boilerplate:${APP_TAG}
+    command: yarn start:parse-server
+    env_file: .envs/.dev.env
+  live-query-server:
+    image: parse-server-boilerplate:${APP_TAG}
+    command: yarn start:live-query-server
+    env_file: .envs/.dev.env
+  parse-dashboard:
+    image: parse-server-boilerplate:${APP_TAG}
+    command: ./node_modules/.bin/parse-dashboard
+    env_file: .envs/.dev.env
+  mongodb:
+    image: mongo:3.6.3
+    volumes:
+      - mongodb:/data/db
+      - mongodb:/data/configdb
+  redis:
+    image: redis:4.0.8
+    command: redis-server --save "" --appendonly no
+
+volumes:
+  mongodb:
+    driver: local
